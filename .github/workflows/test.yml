@@ -2,8 +2,8 @@ name: Test
 
 on:
   push:
-    branches:
-      - master
+    # branches:
+    #   - master
     paths-ignore:
       - "**.md"
   pull_request:
@@ -99,7 +99,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           cd ./test/linters/projects/
-          pip install -r ./black/requirements.txt -r ./flake8/requirements.txt -r ./mypy/requirements.txt
+          pip install -r ./black/requirements.txt -r ./flake8/requirements.txt -r ./isort/requirements.txt -r ./mypy/requirements.txt
 
       # Ruby
 

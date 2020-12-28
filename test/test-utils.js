@@ -4,6 +4,9 @@ const { join } = require("path");
 const DATE_REGEX = /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+ [+-]\d{4}/g;
 const TEST_DATE = "2019-01-01 00:00:00.000000 +0000";
 
+const DATE_REGEX_ISORT = /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+/g;
+const TEST_DATE_ISORT = "2019-01-01 00:00:00.000000";
+
 /**
  * Creates a temporary directory.
  * @returns {string} - File path
@@ -45,7 +48,13 @@ function normalizePaths(str, path) {
  * @returns {string} - Normalized date
  */
 function normalizeDates(str) {
-	return str.replace(DATE_REGEX, TEST_DATE);
+	const normalizedStr = str.replace(DATE_REGEX, TEST_DATE);
+
+	if (normalizedStr === str) {
+		return str.replace(DATE_REGEX_ISORT, TEST_DATE_ISORT);
+	}
+
+	return normalizedStr;
 }
 
-module.exports = { TEST_DATE, joinDoubleBackslash, normalizeDates, normalizePaths, createTmpDir };
+module.exports = { TEST_DATE, TEST_DATE_ISORT, joinDoubleBackslash, normalizeDates, normalizePaths, createTmpDir };
